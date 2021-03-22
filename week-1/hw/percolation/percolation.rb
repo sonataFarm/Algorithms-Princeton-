@@ -20,6 +20,7 @@ class Site
     while root.parent != root
       root = root.parent
     end
+
     root
   end
 end
