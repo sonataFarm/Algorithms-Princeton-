@@ -8,7 +8,7 @@ class Board
   def self.random(n)
     ints = Array.new(n**2) { |i| i }.shuffle!
     tiles = Array.new(n) { Array.new(n) { ints.pop } }
-    
+
     Board.new(tiles)
   end
 
@@ -41,17 +41,23 @@ class Board
 
     tiles = @tiles.flatten
     goal_tiles = goal.tiles.flatten
-    @hamming = tiles.each_with_index.reduce(0) do |hamming, (tile, idx)| 
-      hamming + (goal_tiles[idx] == tile ? 0 : 1)
+    @hamming = tiles.each_with_index.reduce(0) do |hamming, (tile, idx)|
+      if tile == 0
+        hamming
+      else
+        hamming + (goal_tiles[idx] == tile ? 0 : 1)
+      end
     end
   end
 
   def manhattan
-    return @manhattan if @manhattan 
-    
+    return @manhattan if @manhattan
+
     manhattan = 0
     @tiles.each_with_index do |row, row_idx|
       row.each_with_index do |tile, col_idx|
+        next if tile == 0
+
         goal_row = goal.tiles.index { |row| row.include?(tile) }
         manhattan += (row_idx - goal_row).abs
 
