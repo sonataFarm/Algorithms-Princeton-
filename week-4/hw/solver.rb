@@ -47,12 +47,7 @@ class Solver
     ))
 
     while true
-      @iterations += 1
       best_node = @pq.del_min
-      puts best_node.board
-      puts "#{@iterations} iterations"
-      puts "#{@pq.size} items in priority queue"
-      puts '-' * 8
 
       if best_node.board == @initial_board.goal
         @solution = best_node
@@ -68,7 +63,6 @@ class Solver
       next_nodes = generate_next_nodes(best_node)
       next_nodes.each { |n| @pq.insert(n) }
       
-      # same for twin
       next_nodes_twin = generate_next_nodes(best_node_twin)
       next_nodes_twin.each { |n| @pq_twin.insert(n) }
     end
