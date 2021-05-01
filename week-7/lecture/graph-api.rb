@@ -1,6 +1,7 @@
 require './bag'
 
 class Graph
+  attr_reader :v, :e
   def initialize(v)
     @v = v
     @e = 0
@@ -14,7 +15,7 @@ class Graph
   end
 
   def adj(v)
-    @adj[v]
+    @adj[v].items
   end
 
   def degree(v)

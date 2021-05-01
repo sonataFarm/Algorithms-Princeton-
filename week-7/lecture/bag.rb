@@ -1,5 +1,5 @@
 class Bag
-  attr_accessor :items, :size
+  attr_accessor :size
   def initialize
     @items = Array.new(1)
     @i = -1
@@ -28,5 +28,9 @@ class Bag
 
   def full?
     @size == @items.length 
+  end
+
+  def items
+    @size == 0 ? [] : @items[0..@i]
   end
 end

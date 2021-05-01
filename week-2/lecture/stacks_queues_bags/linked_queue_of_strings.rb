@@ -1,5 +1,3 @@
-require 'pry'
-
 class Node
   attr_accessor :prev
   attr_reader :value
@@ -10,10 +8,12 @@ class Node
   end
 end
 
-class LinkedQueueOfStrings
+class Queue
+  attr_reader :size
   def initialize
     @front = nil
     @back = nil
+    @size = 0
   end
 
   def enqueue(value)
@@ -25,6 +25,7 @@ class LinkedQueueOfStrings
       @back.prev = new_node
       @back = new_node
     end
+    @size += 1
   end
 
   def dequeue
@@ -37,6 +38,8 @@ class LinkedQueueOfStrings
     else
       @front = @front.prev
     end
+    @size -= 1
+    
     value_to_dequeue
   end
 
